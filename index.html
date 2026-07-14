@@ -123,7 +123,7 @@ function drawGraph(q,hits){
  svg.innerHTML=s;
 }
 /* ── 자연어 질의 (서버리스 Worker로 서술; 검색·검색은 클라이언트) ── */
-const ASK_ENDPOINT="";  /* ← Worker 배포 후 URL 입력 (예: https://causal-atlas-ask.<계정>.workers.dev) */
+const ASK_ENDPOINT="/ask";  /* ← Worker 배포 후 URL 입력 (예: https://causal-atlas-ask.<계정>.workers.dev) */
 if(document.getElementById('nlcfg'))document.getElementById('nlcfg').textContent=ASK_ENDPOINT?'':'(데모: 답변 서버 미설정 — worker 배포 후 ASK_ENDPOINT 입력)';
 function nlEnts(q){return (q.match(/[A-Za-z][\w.\-]{1,}/g)||[]).filter(t=>t.length>=2);}
 function nlCross(q){return /보존|종간|다른\s*종|교차|translat|conserv|ortholog|사람|인간|마우스|mouse|초파리|fly|선충|worm/i.test(q);}
