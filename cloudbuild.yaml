@@ -9,11 +9,11 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build','-f','docker/Dockerfile',
-           '-t','gcr.io/$PROJECT_ID/causal-atlas:$COMMIT_SHA',
+           '-t','gcr.io/$PROJECT_ID/causal-atlas:$BUILD_ID',
            '-t','gcr.io/$PROJECT_ID/causal-atlas:latest','.']
     id: build
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push','gcr.io/$PROJECT_ID/causal-atlas:$COMMIT_SHA']
+    args: ['push','gcr.io/$PROJECT_ID/causal-atlas:$BUILD_ID']
     id: push
     waitFor: ['build']
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -23,7 +23,7 @@ steps:
       - deploy
       - causal-atlas
       - --image
-      - gcr.io/$PROJECT_ID/causal-atlas:$COMMIT_SHA
+      - gcr.io/$PROJECT_ID/causal-atlas:$BUILD_ID
       - --region
       - ${_REGION}
       - --platform
@@ -47,6 +47,6 @@ options:
   logging: CLOUD_LOGGING_ONLY
   machineType: 'E2_HIGHCPU_8'
 images:
-  - 'gcr.io/$PROJECT_ID/causal-atlas:$COMMIT_SHA'
+  - 'gcr.io/$PROJECT_ID/causal-atlas:$BUILD_ID'
   - 'gcr.io/$PROJECT_ID/causal-atlas:latest'
 timeout: '600s'
