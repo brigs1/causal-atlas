@@ -1,0 +1,4 @@
+name = "causal-atlas-ask"
+main = "worker.js"
+compatibility_date = "2024-11-01"
+# OPENAI_API_KEY 는 시크릿으로: wrangler secret put OPENAI_API_KEY
